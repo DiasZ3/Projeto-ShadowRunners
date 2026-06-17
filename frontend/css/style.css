@@ -1,0 +1,134 @@
+/* Reset básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #150d2a 0%, #0c071a 100%); /* Fundo escuro degradê */
+    color: #e2d9f3;
+}
+
+/* --- ESTILIZAÇÃO DA SIDEBAR --- */
+.sidebar {
+    width: 90px;
+    background-color: #5d368b; /* Roxo da barra lateral */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.nav-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #ffffff33;
+    transition: 0.3s;
+}
+
+.nav-icon:hover {
+    transform: scale(1.1);
+    border-color: #ffffff;
+}
+
+.nav-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1); /* Deixa os ícones brancos se forem pretos */
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.logo {
+    max-width: 80%;
+    height: auto;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* GRID DE 2 COLUNAS */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* --- ESTILO DOS CARDS COMO BOTÕES NEON --- */
+.card {
+    /* Reseta estilos padrão de botão, caso decida mudar a tag para <button> no HTML */
+    border: 2px solid transparent; 
+    cursor: pointer;
+    outline: none;
+    text-align: left;
+    
+    /* Estilos visuais originais */
+    background-color: #9352b3; /* Roxo base */
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    
+    /* Transição suave para o efeito neon */
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+
+/* EFEITO HOVER (QUANDO PASSA O MOUSE) */
+.card:hover {
+    transform: translateY(-5px); /* Dá um leve salto para cima */
+    background-color: #a462c4; /* Clarea levemente o fundo do card */
+    border-color: #bc6ff2; /* Borda acende em roxo claro */
+    
+    /* O Segredo do Neon: Várias camadas de sombra (intensa, média e expansiva) */
+    box-shadow: 0 0 10px #bc6ff2, 
+                0 0 25px #9352b3, 
+                0 0 50px rgba(147, 82, 179, 0.6),
+                0 12px 30px rgba(0, 0, 0, 0.6); /* Mantém a sombra de profundidade embaixo */
+}
+
+/* Ajustes das linhas internas do card */
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    gap: 15px;
+    pointer-events: none; /* Garante que o clique seja registrado no card inteiro, não no texto */
+}
+
+.card-row p:first-child { text-align: left; }
+.card-row p:last-child { text-align: right; }
+
+.card-row strong {
+    color: #ffffff;
+    font-weight: 600;
+}

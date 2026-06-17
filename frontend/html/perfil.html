@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowRunner - Perfil</title>
+    <!-- Linkando para o seu CSS específico de perfil -->
+    <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+
+    <!-- SIDEBAR CORRIGIDA: Alterna perfeitamente entre as telas na mesma pasta -->
+    <aside class="sidebar">
+        <a href="perfil.html" class="nav-icon active-nav">
+            <img src="../assets/perfil.png" alt="Perfil">
+        </a>
+        <a href="index.html" class="nav-icon">
+            <img src="../assets/server.png" alt="Servidor">
+        </a>
+        
+        <div class="logo-container">
+            <img src="../assets/logo.png" alt="ShadowRunner Logo" class="logo">
+        </div>
+        
+        <!-- Aponta para a sua tela de criação de corrida -->
+        <a href="cria-corrida.html" class="nav-icon">
+            <img src="../assets/config.png" alt="Criar Corrida">
+        </a>
+        <div class="nav-icon">
+            <img src="../assets/list.png" alt="Carteira">
+        </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL: Tela de Perfil Otimizada -->
+    <main class="main-content profile-container">
+        
+        <!-- Topo com Avatar e Nome Principal -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="../assets/perfil.png" alt="Avatar">
+            </div>
+            <h1 class="profile-name">seu perfil</h1>
+        </div>
+
+        <!-- Grade de 3 Colunas do Figma -->
+        <div class="profile-grid">
+            
+            <!-- COLUNA 1: VISUALIZAR INFORMAÇÕES (REESTILIZADA E MAIS BONITA) -->
+            <section class="profile-card info-card">
+                <h2>suas informações</h2>
+                
+                <div class="info-display-container">
+                    <div class="info-field">
+                        <span class="field-label">nome completo</span>
+                        <div class="field-value">Piloto das Sombras</div>
+                    </div>
+                    
+                    <div class="info-field">
+                        <span class="field-label">apelido de corredor</span>
+                        <div class="field-value">shadow_runner_99</div>
+                    </div>
+                    
+                    <div class="info-field">
+                        <span class="field-label">rank atual</span>
+                        <div class="field-value rank-highlight">classe a</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUNA 2: HISTÓRICO DE CORRIDAS -->
+            <section class="profile-card">
+                <h2>histórico de corridas</h2>
+                <!-- Adicione sua lista ou componentes de histórico aqui se quiser -->
+            </section>
+
+            <!-- COLUNA 3: SEU CARRO (COM BOTÃO NO RODAPÉ) -->
+            <section class="profile-card car-card">
+                <h2>seu carro</h2>
+                
+                <!-- Espaço para você colocar foto/dados do carro no futuro -->
+                <div class="car-placeholder"></div>
+
+                <button class="manage-btn">
+                    <img src="../assets/config.png" alt="Config">
+                    gerenciar corridas
+                </button>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>

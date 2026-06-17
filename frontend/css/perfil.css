@@ -1,0 +1,158 @@
+/* ==========================================================================
+   1. RESET E CONFIGURAÇÕES DE BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #150d2a 0%, #0c071a 100%);
+    color: #e2d9f3;
+}
+
+/* Área de conteúdo principal ao lado da barra lateral */
+.main-content {
+    flex: 1;
+    margin-left: 90px; /* Alinhamento devido à sidebar fixa */
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   2. BARRA LATERAL FIXA (SIDEBAR)
+   ========================================================================== */
+.sidebar {
+    width: 90px;
+    background-color: #5d368b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10;
+}
+
+.nav-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #ffffff33;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* Ícone de perfil ativo ganha o brilho neon roxo fixo nesta tela */
+.nav-icon:hover, .active-nav {
+    transform: scale(1.1);
+    border-color: #bc6ff2;
+    box-shadow: 0 0 12px #bc6ff2;
+}
+
+.nav-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.logo {
+    max-width: 80%;
+    height: auto;
+}
+/* ==========================================================================
+   ESTILIZAÇÃO EXCLUSIVA PARA A SEÇÃO DE INFORMAÇÕES (UPGRADE VISUAL)
+   ========================================================================== */
+
+/* Container que agrupa os campos de dados */
+.info-display-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+/* Estrutura de cada linha de informação */
+.info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+/* Label pequena indicando o que é o dado */
+.field-label {
+    font-size: 12px;
+    color: #bc6ff2;
+    text-transform: lowercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding-left: 5px;
+    text-shadow: 0 0 5px rgba(188, 111, 242, 0.2);
+}
+
+/* Bloco escuro com o valor do dado (Estilo HUD de jogo) */
+.field-value {
+    background-color: #0c071a; /* Fundo escuro para destacar do card roxo */
+    border: 1px solid rgba(188, 111, 242, 0.2);
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Efeito interativo quando passa o mouse por cima do dado */
+.info-field:hover .field-value {
+    border-color: #bc6ff2;
+    box-shadow: 0 0 10px rgba(188, 111, 242, 0.3);
+    transform: translateX(3px); /* Leve efeito de deslize */
+}
+
+/* Destaque especial em Neon para o Rank do piloto */
+.rank-highlight {
+    color: #00ff66; /* Verde Neon */
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+    border-color: rgba(0, 255, 102, 0.2);
+}
+
+.info-field:hover .rank-highlight {
+    border-color: #00ff66;
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+}
+
+/* Placeholder temporário para a área do carro */
+.car-placeholder {
+    flex: 1;
+    width: 100%;
+    margin: 20px 0;
+    background-color: rgba(12, 7, 26, 0.4);
+    border-radius: 16px;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+}
