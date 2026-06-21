@@ -1,28 +1,43 @@
-/* --- RESET E BASES CORE --- */
+:root {
+    --bg-main: #0a0513;        
+    --bg-sidebar: #130a21;     
+    --bg-card: #180e29;        
+    --bg-input: #0b0516;       
+    
+    --neon-purple: #bc00dd;    
+    --neon-cyan: #00f0ff;      
+    
+    --text-primary: #e3daf0;   
+    --text-muted: #84729f;     
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     display: flex;
     min-height: 100vh;
-    background: linear-gradient(180deg, #150d2a 0%, #0c071a 100%);
-    color: #e2d9f3;
+    background: var(--bg-main);
+    color: var(--text-primary);
 }
 
-/* --- SIDEBAR PADRÃO REUTILIZADA --- */
+/* ==========================================================================
+   SIDEBAR PADRÃO REUTILIZADA (IGUAL AO PERFIL)
+   ========================================================================== */
 .sidebar {
-    width: 90px;
-    background-color: #5d368b;
+    width: 95px;
+    background: var(--bg-sidebar);
+    border-right: 2px solid rgba(188, 0, 221, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 30px 0;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.6);
     position: fixed;
     top: 0;
     left: 0;
@@ -31,47 +46,91 @@ body {
 }
 
 .nav-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #000000;
-    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
-    border: 2px solid #ffffff33;
-    transition: 0.3s;
+    justify-content: center;
+    margin-bottom: 25px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
     text-decoration: none;
-}
-
-.nav-icon:hover, .active-nav {
-    transform: scale(1.1);
-    border-color: #bc6ff2;
-    box-shadow: 0 0 12px #bc6ff2;
+    background: transparent;
+    border: none;
 }
 
 .nav-icon img {
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.nav-icon:hover img, 
+.active-nav img {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--neon-purple)) brightness(0) invert(1);
+}
+
+.active-nav::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 25px;
+    background: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+    border-radius: 0 4px 4px 0;
 }
 
 .logo-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: auto 0;
 }
 
 .logo {
-    max-width: 80%;
-    height: auto;
+    width: 50px;
+    filter: drop-shadow(0 0 8px var(--neon-purple));
+    animation: pulse 3s infinite alternate;
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
+.nav-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 75px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    background: var(--bg-card);
+    border: 1px solid var(--neon-purple);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 10px rgba(188, 111, 242, 0.4);
+    text-transform: lowercase;
+}
+
+.nav-icon:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL E LAYOUT DO FORMULÁRIO
+   ========================================================================== */
 .main-content {
     flex: 1;
-    margin-left: 90px;
+    margin-left: 95px;
     padding: 40px;
     display: flex;
     align-items: center;
@@ -79,8 +138,10 @@ body {
 }
 
 .form-container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 
 .race-form {
@@ -104,12 +165,14 @@ body {
     gap: 25px;
 }
 
-/* --- DESIGN AVANÇADO DOS INPUTS --- */
+/* ==========================================================================
+   ELEMENTOS DE INPUTS E BLOCOS (ESTILO PERFIL)
+   ========================================================================== */
 .input-purple {
     width: 100%;
-    background-color: #251642; /* Roxo escuro para contraste moderno */
-    border: 2px solid #5d368b;
-    border-radius: 16px;
+    background-color: var(--bg-input); 
+    border: 1px solid rgba(132, 114, 159, 0.3);
+    border-radius: 8px;
     padding: 16px 25px;
     color: #ffffff;
     font-size: 16px;
@@ -119,59 +182,46 @@ body {
 }
 
 .input-purple:focus {
-    border-color: #bc6ff2;
-    background-color: #2f1d54;
-    box-shadow: 0 0 15px rgba(188, 111, 242, 0.4);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(188, 0, 221, 0.4);
 }
 
 .input-purple::placeholder {
-    color: #8c7ba6;
+    color: var(--text-muted);
     text-transform: lowercase;
 }
 
-/* --- ESTILIZAÇÃO DOS CONTAINERS EM NEON --- */
 .form-block-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.form-block-group.flex-fill {
-    flex: 1;
-}
-
 .block-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #bc6ff2; /* Texto do título brilhante */
-    text-shadow: 0 0 8px rgba(188, 111, 242, 0.3);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--neon-purple); 
+    text-shadow: 0 0 8px rgba(188, 0, 221, 0.3);
     text-align: center;
-    text-transform: lowercase;
-    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* O Bloco Roxo Principal */
 .inner-block {
-    background-color: #9352b3;
-    border-radius: 22px;
+    background: var(--bg-card);
+    border-radius: 12px;
     padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    border: 2px solid transparent;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(188, 0, 221, 0.15);
     transition: all 0.3s ease;
 }
 
-/* Efeito Neon Suave constante nos blocos */
-.neon-glow {
-    border-color: rgba(188, 111, 242, 0.2);
-    box-shadow: 0 0 20px rgba(147, 82, 179, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.05);
-}
-
 .neon-glow:hover {
-    border-color: #bc6ff2;
-    box-shadow: 0 0 25px rgba(188, 111, 242, 0.4);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
 .input-row {
@@ -181,21 +231,20 @@ body {
 }
 
 .input-row label {
-    font-size: 16px;
-    color: #ffffff;
+    font-size: 14px;
+    color: var(--text-primary);
     font-weight: 500;
     text-transform: lowercase;
     white-space: nowrap;
 }
 
-/* Inputs internos cinza/claros refinados */
 .input-light {
     flex: 1;
-    background-color: #f0edf5;
-    border: 2px solid transparent;
-    border-radius: 14px;
+    background-color: var(--bg-input);
+    border: 1px solid rgba(132, 114, 159, 0.2);
+    border-radius: 6px;
     padding: 12px 18px;
-    color: #1a0f30;
+    color: #ffffff;
     font-size: 15px;
     font-weight: 500;
     outline: none;
@@ -203,12 +252,14 @@ body {
 }
 
 .input-light:focus {
-    background-color: #ffffff;
-    border-color: #5d368b;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--bg-input);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 10px rgba(188, 0, 221, 0.3);
 }
 
-/* --- GRID DE BOTÕES DE CORREDORES --- */
+/* ==========================================================================
+   GRID DE SELEÇÃO DE CORREDORES
+   ========================================================================== */
 .riders-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -221,70 +272,57 @@ body {
     align-items: center;
     gap: 12px;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     position: relative;
     user-select: none;
 }
 
-.radio-container input {
-    position: absolute;
-    opacity: 0;
-}
-
 .radio-checkmark {
-    height: 32px;
-    width: 32px;
-    background-color: #0c071a; /* Preto profundo para combinar com o tema */
-    border: 2px solid #5d368b;
+    height: 24px;
+    width: 24px;
+    background-color: var(--bg-input); 
+    border: 1px solid rgba(132, 114, 159, 0.4);
     border-radius: 50%;
     position: relative;
     transition: all 0.2s ease;
 }
 
 .radio-container:hover input ~ .radio-checkmark {
-    border-color: #bc6ff2;
-    transform: scale(1.08);
-    box-shadow: 0 0 8px rgba(188, 111, 242, 0.5);
+    border-color: var(--neon-purple);
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(188, 0, 221, 0.5);
 }
 
 .radio-checkmark::after {
     content: "";
     position: absolute;
     display: none;
-    top: 8px;
-    left: 8px;
-    width: 12px;
-    height: 12px;
+    top: 6px;
+    left: 6px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #bc6ff2;
-    box-shadow: 0 0 10px #bc6ff2;
+    background: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
 }
 
 .radio-container input:checked ~ .radio-checkmark {
-    border-color: #bc6ff2;
-    background-color: #000000;
+    border-color: var(--neon-purple);
+    background-color: var(--bg-input);
 }
 
 .radio-container input:checked ~ .radio-checkmark::after {
     display: block;
 }
 
-/* --- DESIGN DO TOGGLE DE PREMIAÇÃO --- */
-.reward-block {
-    justify-content: space-between;
-}
-
-.reward-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
+/* ==========================================================================
+   TOGGLE DE PREMIAÇÃO
+   ========================================================================== */
 .reward-header label {
-    font-size: 16px;
-    color: #ffffff;
+    font-size: 14px;
+    color: var(--text-primary);
     font-weight: 500;
     text-transform: lowercase;
 }
@@ -292,60 +330,43 @@ body {
 .toggle-buttons {
     display: flex;
     gap: 12px;
-    background-color: #0c071a;
+    background-color: var(--bg-input);
     padding: 6px 12px;
     border-radius: 20px;
-    border: 1px solid #5d368b;
+    border: 1px solid rgba(132, 114, 159, 0.2);
 }
 
 .btn-toggle {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
-    opacity: 0.25;
+    opacity: 0.15;
     transition: all 0.3s ease;
 }
 
-.btn-toggle.green { background-color: #00ff66; box-shadow: 0 0 4px rgba(0, 255, 102, 0.2); }
-.btn-toggle.red { background-color: #ff3366; box-shadow: 0 0 4px rgba(255, 51, 102, 0.2); }
+.btn-toggle.green { background-color: #00ff66; }
+.btn-toggle.red { background-color: #ff3366; }
 
 .btn-toggle.active.green { opacity: 1; box-shadow: 0 0 12px #00ff66; }
 .btn-toggle.active.red { opacity: 1; box-shadow: 0 0 12px #ff3366; }
 
-/* --- BOTÃO PRINCIPAL (CRIAR CORRIDA) --- */
+/* ==========================================================================
+   BOTÃO ENVIAR (SUBMIT)
+   ========================================================================== */
 .submit-race-btn {
     width: 100%;
     max-width: 450px;
     margin: 10px auto 0 auto;
-    background-color: #5d368b;
+    background-color: transparent;
     color: #ffffff;
-    border: 2px solid transparent;
-    border-radius: 18px;
+    border: 1.5px solid var(--neon-cyan);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), rgba(0, 240, 255, 0.1));
+    border-radius: 8px;
     padding: 16px;
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    text-transform: lowercase;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.submit-race-btn:hover {
-    background-color: #7242a5;
-    border-color: #bc6ff2;
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px #bc6ff2, 
-                0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-/* --- RESPONSIVIDADE INTERNA --- */
-@media (max-width: 900px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .main-content {
-        padding: 20px;
-    }
-}
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s cubic

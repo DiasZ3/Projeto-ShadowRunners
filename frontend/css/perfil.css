@@ -1,158 +1,278 @@
-/* ==========================================================================
-   1. RESET E CONFIGURAÇÕES DE BASE
-   ========================================================================== */
+:root {
+    --bg-main: #0a0513;        
+    --bg-sidebar: #130a21;     
+    --bg-card: #180e29;        
+    --bg-input: #0b0516;       
+    
+    --neon-purple: #bc00dd;    
+    --neon-cyan: #00f0ff;      
+    
+    --text-primary: #e3daf0;   
+    --text-muted: #84729f;     
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     display: flex;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #150d2a 0%, #0c071a 100%);
-    color: #e2d9f3;
-}
-
-/* Área de conteúdo principal ao lado da barra lateral */
-.main-content {
-    flex: 1;
-    margin-left: 90px; /* Alinhamento devido à sidebar fixa */
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* ==========================================================================
-   2. BARRA LATERAL FIXA (SIDEBAR)
+   BARRA LATERAL (SIDEBAR) - CORRIGIDA
    ========================================================================== */
 .sidebar {
-    width: 90px;
-    background-color: #5d368b;
+    width: 95px;
+    background: var(--bg-sidebar);
+    border-right: 2px solid rgba(188, 0, 221, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     padding: 30px 0;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.6);
     z-index: 10;
 }
 
 .nav-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #000000;
-    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
-    border: 2px solid #ffffff33;
-    transition: 0.3s;
+    justify-content: center;
+    margin-bottom: 25px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
     text-decoration: none;
 }
 
-/* Ícone de perfil ativo ganha o brilho neon roxo fixo nesta tela */
-.nav-icon:hover, .active-nav {
-    transform: scale(1.1);
-    border-color: #bc6ff2;
-    box-shadow: 0 0 12px #bc6ff2;
+.nav-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Torna as imagens totalmente brancas */
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
-.nav-icon img {
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
+.nav-icon:hover img, 
+.nav-icon.active-nav img {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--neon-purple)) brightness(0) invert(1);
+}
+
+.nav-icon.active-nav::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 25px;
+    background: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+    border-radius: 0 4px 4px 0;
 }
 
 .logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px 0;
 }
 
 .logo {
-    max-width: 80%;
-    height: auto;
+    width: 50px;
+    filter: drop-shadow(0 0 8px var(--neon-purple));
+    animation: pulse 3s infinite alternate;
 }
-/* ==========================================================================
-   ESTILIZAÇÃO EXCLUSIVA PARA A SEÇÃO DE INFORMAÇÕES (UPGRADE VISUAL)
-   ========================================================================== */
 
-/* Container que agrupa os campos de dados */
+.nav-icon[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 75px;
+    background: var(--bg-card);
+    border: 1px solid var(--neon-purple);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(188, 0, 221, 0.3);
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL E DASHBOARD
+   ========================================================================== */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--neon-purple);
+    box-shadow: 0 0 15px rgba(188, 0, 221, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+}
+
+.profile-name {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    text-shadow: 0 0 10px var(--neon-purple);
+    background: linear-gradient(90deg, #fff, var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; 
+    grid-template-rows: auto auto;
+    gap: 30px;
+    flex: 1;
+}
+
+.profile-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(188, 0, 221, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-card h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(132, 114, 159, 0.15);
+    padding-bottom: 10px;
+}
+
+.info-card {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.car-card {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.profile-card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS E CAMPOS DE DADOS
+   ========================================================================== */
 .info-display-container {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    margin-top: 25px;
 }
 
-/* Estrutura de cada linha de informação */
 .info-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    width: 100%;
 }
 
-/* Label pequena indicando o que é o dado */
 .field-label {
-    font-size: 12px;
-    color: #bc6ff2;
-    text-transform: lowercase;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding-left: 5px;
-    text-shadow: 0 0 5px rgba(188, 111, 242, 0.2);
-}
-
-/* Bloco escuro com o valor do dado (Estilo HUD de jogo) */
-.field-value {
-    background-color: #0c071a; /* Fundo escuro para destacar do card roxo */
-    border: 1px solid rgba(188, 111, 242, 0.2);
-    border-radius: 12px;
-    padding: 14px 20px;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-/* Efeito interativo quando passa o mouse por cima do dado */
-.info-field:hover .field-value {
-    border-color: #bc6ff2;
-    box-shadow: 0 0 10px rgba(188, 111, 242, 0.3);
-    transform: translateX(3px); /* Leve efeito de deslize */
-}
-
-/* Destaque especial em Neon para o Rank do piloto */
-.rank-highlight {
-    color: #00ff66; /* Verde Neon */
-    font-weight: 700;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
-    border-color: rgba(0, 255, 102, 0.2);
+    color: var(--neon-purple);
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
-.info-field:hover .rank-highlight {
-    border-color: #00ff66;
-    box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+.field-value {
+    background: var(--bg-input);
+    border: 1px solid rgba(132, 114, 159, 0.3);
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
 }
 
-/* Placeholder temporário para a área do carro */
+.rank-highlight {
+    border: 1.5px solid var(--neon-cyan);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), rgba(0, 240, 255, 0.15));
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--neon-cyan);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
 .car-placeholder {
-    flex: 1;
     width: 100%;
-    margin: 20px 0;
-    background-color: rgba(12, 7, 26, 0.4);
-    border-radius: 16px;
-    border: 2px dashed rgba(255, 255, 255, 0.1);
+    height: 120px;
+    background: var(--bg-input);
+    border: 2px dashed rgba(132, 114, 159, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.car-placeholder::after {
+    content: "🏎️ Nenhum veículo selecionado";
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.profile-card:nth-child(2)::after {
+    content: "🏁 Histórico Vazio \A\A Adicione novas corridas para visualizá-las aqui.";
+    white-space: pre-wrap;
+    display: block;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    border: 1px dashed rgba(188, 0, 221, 0.2);
+    border-radius: 8px;
+    background: var(--bg-input);
+    font-size: 0.9rem;
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 5px var(--neon-purple)); }
+    100% { filter: drop-shadow(0 0 15px var(--neon-purple)); }
 }
