@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShadowRunner - Criar Corrida</title>
+    <link rel="stylesheet" href="assets/css/criaCorrida.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a href="perfil.html" class="nav-icon" data-tooltip="Perfil">
+        <img src="assets/img/perfil.png" alt="Perfil" />
+      </a>
+      <a
+        href="criar-corrida.html"
+        class="nav-icon active-nav"
+        data-tooltip="Criar Corridas"
+      >
+        <img src="assets/img/server.png" alt="Criar Corridas" />
+      </a>
+
+      <div class="logo-container">
+        <img src="assets/img/logo.png" alt="ShadowRunner Logo" class="logo" />
+      </div>
+
+      <a href="configuracao.html" class="nav-icon" data-tooltip="Configurações">
+        <img src="assets/img/config.png" alt="Configurações" />
+      </a>
+      <a href="index.html" class="nav-icon" data-tooltip="Ver Corridas">
+        <img src="assets/img/list.png" alt="Ver Corridas" />
+      </a>
+    </aside>
+
+    <main class="main-content form-container">
+      <form class="race-form" onsubmit="cadastrarCorrida(event)">
+        <div class="form-grid">
+          <div class="form-column">
+            <input
+              type="text"
+              placeholder="nome da corrida"
+              class="input-purple"
+              id="nomeC"
+              required
+            />
+            <input
+              type="text"
+              placeholder="apelido de criador"
+              class="input-purple"
+              id="apelidoC"
+              required
+            />
+            <input
+              type="text"
+              placeholder="horário da corrida"
+              class="input-purple"
+              id="horarioC"
+              required
+            />
+
+            <div class="form-block-group">
+              <span class="block-title">local de corrida</span>
+              <div class="inner-block neon-glow">
+                <div class="input-row">
+                  <label>início:</label>
+                  <input
+                    type="text"
+                    class="input-light"
+                    placeholder="rua, av..."
+                    id="inicioC"
+                    required
+                  />
+                </div>
+                <div class="input-row">
+                  <label>chegada:</label>
+                  <input
+                    type="text"
+                    class="input-light"
+                    placeholder="destino final..."
+                    id="chegadaC"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-column">
+            <div class="form-block-group flex-fill">
+              <span class="block-title">quantidade de corredores</span>
+              <div class="inner-block riders-grid neon-glow">
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="2"
+                    id="quantidadecorredor"
+                    checked
+                  />
+                  <span class="radio-checkmark"></span> 2
+                </label>
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="8"
+                    id="quantidadecorredor"
+                  />
+                  <span class="radio-checkmark"></span> 8
+                </label>
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="3"
+                    id="quantidadecorredor"
+                  />
+                  <span class="radio-checkmark"></span> 3
+                </label>
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="12"
+                    id="quantidadecorredor"
+                  />
+                  <span class="radio-checkmark"></span> 12
+                </label>
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="4"
+                    id="quantidadecorredor"
+                  />
+                  <span class="radio-checkmark"></span> 4
+                </label>
+                <div></div>
+                <label class="radio-container">
+                  <input
+                    type="radio"
+                    name="corredores"
+                    value="6"
+                    id="quantidadecorredor"
+                  />
+                  <span class="radio-checkmark"></span> 6
+                </label>
+              </div>
+            </div>
+
+            <div class="form-block-group">
+              <div class="inner-block reward-block neon-glow">
+                <div class="reward-header">
+                  <label>premiação:</label>
+                  <div class="toggle-buttons">
+                    <span class="btn-toggle green active"></span>
+                    <span class="btn-toggle red"></span>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <label>valor:</label>
+                  <input
+                    type="number"
+                    class="input-light"
+                    placeholder="0.00"
+                    id="premiacao"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">CRIAR CORRIDA</button>
+          </div>
+          <!-- Fim da form-column direita -->
+        </div>
+        <!-- Fim do form-grid -->
+      </form>
+    </main>
+    <script src="assets/javascript/script.js"></script>
+  </body>
+</html>

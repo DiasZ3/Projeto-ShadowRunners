@@ -1,0 +1,194 @@
+:root {
+  --bg-main: #0a0513;
+  --bg-sidebar: #130a21;
+  --bg-card: #180e29;
+  --bg-input: #0b0516;
+
+  --neon-purple: #bc00dd;
+  --neon-cyan: #00f0ff;
+
+  --text-primary: #e3daf0;
+  --text-muted: #84729f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.sidebar {
+  width: 95px;
+  background: var(--bg-sidebar);
+  border-right: 2px solid rgba(188, 0, 221, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.nav-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.nav-icon:hover img,
+.active-nav img {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px var(--neon-purple)) brightness(0) invert(1);
+}
+
+.active-nav::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 4px;
+  height: 25px;
+  background: var(--neon-purple);
+  box-shadow: 0 0 10px var(--neon-purple);
+  border-radius: 0 4px 4px 0;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto 0;
+}
+
+.logo {
+  width: 50px;
+  filter: drop-shadow(0 0 8px var(--neon-purple));
+  animation: pulse 3s infinite alternate;
+}
+
+.nav-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 75px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  background: var(--bg-card);
+  border: 1px solid var(--neon-purple);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(188, 111, 242, 0.4);
+  text-transform: lowercase;
+}
+
+.nav-icon:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  border: 1px solid rgba(188, 0, 221, 0.15);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: var(--bg-card);
+  border-color: var(--neon-cyan);
+  box-shadow:
+    0 0 20px rgba(0, 240, 255, 0.2),
+    0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  gap: 15px;
+  pointer-events: none;
+  color: var(--text-muted);
+}
+
+.card-row p:first-child {
+  text-align: left;
+}
+.card-row p:last-child {
+  text-align: right;
+}
+
+.card-row strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 5px var(--neon-purple));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px var(--neon-purple));
+  }
+}
+
+.btnAdicionarCorridas {
+  background-color: green;
+}

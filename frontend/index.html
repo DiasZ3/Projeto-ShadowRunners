@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShadowRunner - Ver Corridas</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a href="perfil.html" class="nav-icon" data-tooltip="Perfil">
+        <img src="assets/img/perfil.png" alt="Perfil" />
+      </a>
+
+      <a
+        href="criar-corrida.html"
+        class="nav-icon"
+        data-tooltip="Criar Corridas"
+      >
+        <img src="assets/img/server.png" alt="Criar Corridas" />
+      </a>
+
+      <div class="logo-container">
+        <img src="assets/img/logo.png" alt="ShadowRunner Logo" class="logo" />
+      </div>
+
+      <a href="configuracao.html" class="nav-icon" data-tooltip="Configurações">
+        <img src="assets/img/config.png" alt="Configurações" />
+      </a>
+
+      <a
+        href="index.html"
+        class="nav-icon active-nav"
+        data-tooltip="Ver Corridas"
+      >
+        <img src="assets/img/list.png" alt="Ver Corridas" />
+      </a>
+    </aside>
+
+    <main class="main-content">
+      <div class="cards-grid" id="grid-corridas">
+        <button class="card">
+          <div class="card-row">
+            <p><strong>nome da corrida:</strong> circuito shadow</p>
+            <p><strong>premiação:</strong> r$ 5.000</p>
+          </div>
+          <div class="card-row">
+            <p><strong>local de início:</strong> rua sla sla</p>
+            <p><strong>chegada:</strong> rua bla bla</p>
+          </div>
+          <div class="card-row">
+            <p><strong>horário:</strong> 22:00</p>
+          </div>
+        </button>
+
+        <button class="card">
+          <div class="card-row">
+            <p><strong>nome da corrida:</strong> rota neon</p>
+            <p><strong>premiação:</strong> r$ 3.500</p>
+          </div>
+          <div class="card-row">
+            <p><strong>local de início:</strong> rua sla sla</p>
+            <p><strong>chegada:</strong> rua bla bla</p>
+          </div>
+          <div class="card-row">
+            <p><strong>horário:</strong> 00:30</p>
+          </div>
+        </button>
+      </div>
+    </main>
+    <script src="assets/javascript/script.js"></script>
+  </body>
+</html>
