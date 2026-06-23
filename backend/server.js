@@ -15,13 +15,15 @@ app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 // Rotas auxiliares para facilitar navegação
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "frontend", "html", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
 
 app.get("/criar", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "frontend", "html", "criar-corrida.html"),
-  );
+  res.sendFile(path.join(__dirname, "..", "frontend", "criar-corrida.html"));
+});
+
+app.get("/configuracao", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "frontend", "configuracao.html"));
 });
 
 app.listen(PORT, () => {

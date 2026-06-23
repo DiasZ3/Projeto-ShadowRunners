@@ -37,4 +37,41 @@ router.get("/", (req, res) => {
   });
 });
 
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { nome, apelido, horario, premiacao, inicio, chegada, quantidade } = req.body;
+  const stmt = db.prepare(
+    "UPDATE corridas SET nome = ?, apelido = ?, horario = ?, premiacao = ?, inicio = ?, chegada = ?, quantidade = ? WHERE id = ?",
+  );
+
+  stmt.run(
+    nome,
+    apelido,
+    horario,
+    premiacao || 0,
+    inicio,
+    chegada,
+    quantidade || null,
+    id,
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      if (this.changes === 0) return res.status(404).json({ error: "Corrida não encontrada" });
+      db.get("SELECT * FROM corridas WHERE id = ?", [id], (err, row) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(row);
+      });
+    },
+  );
+});
+
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  const stmt = db.prepare("DELETE FROM corridas WHERE id = ?");
+  stmt.run(id, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    if (this.changes === 0) return res.status(404).json({ error: "Corrida não encontrada" });
+    res.json({ success: true });
+  });
+});
+
 module.exports = router;

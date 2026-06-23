@@ -4,135 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShadowRunner - Configurações de Corridas</title>
-    <link rel="stylesheet" href="../frontend/assets/css/criaCorrida.css" />
-    <link rel="stylesheet" href="../frontend/assets/css/configuracoes.css" />
+    <link rel="stylesheet" href="assets/css/criaCorrida.css" />
+    <link rel="stylesheet" href="assets/css/configuracao.css" />
   </head>
   <body>
     <aside class="sidebar">
       <a href="perfil.html" class="nav-icon" data-tooltip="Perfil">
-        <img src="/Projeto-ShadowRunners/frontend/assets/img/perfil.png" alt="Perfil" />
+        <img src="assets/img/perfil.png" alt="Perfil" />
       </a>
       <a href="criar-corrida.html" class="nav-icon" data-tooltip="Criar Corridas">
-        <img src="/Projeto-ShadowRunners/frontend/assets/img/server.png" alt="Criar Corridas" />
+        <img src="assets/img/server.png" alt="Criar Corridas" />
       </a>
 
       <div class="logo-container">
-        <img src="/Projeto-ShadowRunners/frontend/assets/img/logo.png" alt="ShadowRunner Logo" class="logo" />
+        <img src="assets/img/logo.png" alt="ShadowRunner Logo" class="logo" />
       </div>
 
-      <a href="configuracoes.html" class="nav-icon active-nav" data-tooltip="Configurações">
-        <img src="/Projeto-ShadowRunners/frontend/assets/img/config.png" alt="Configurações" />
+      <a href="configuracao.html" class="nav-icon active-nav" data-tooltip="Configurações">
+        <img src="assets/img/config.png" alt="Configurações" />
       </a>
       <a href="index.html" class="nav-icon" data-tooltip="Ver Corridas">
-        <img src="/Projeto-ShadowRunners/frontend/assets/img/list.png" alt="Ver Corridas" />
+        <img src="assets/img/list.png" alt="Ver Corridas" />
       </a>
     </aside>
 
     <main class="main-content form-container">
       <div class="config-container">
         <h2 class="page-title">Gerenciar Suas Corridas</h2>
-        
-        <div id="lista-corridas-config">
-          
-          <div class="race-settings-card">
-            <form onsubmit="atualizarCorrida(event, '1')">
-              <div class="race-settings-header">
-                <span class="race-settings-title">Corrida de Exemplo #1</span>
-                <div class="action-buttons">
-                  <button type="submit" class="btn-action btn-save">Salvar Alterações</button>
-                  <button type="button" class="btn-action btn-delete" onclick="deletarCorrida('1')">Excluir</button>
-                </div>
-              </div>
+        <p class="page-description">Edite, salve e exclua corridas já cadastradas. Todas as alterações são enviadas diretamente para o sistema.</p>
 
-              <div class="form-grid-custom">
-                <div class="form-column">
-                  <input type="text" placeholder="nome da corrida" class="input-purple" value="Night City Sprint" required />
-                  <input type="text" placeholder="apelido de criador" class="input-purple" value="shadow_runner_99" required />
-                  <input type="text" placeholder="horário da corrida" class="input-purple" value="23:30" required />
-
-                  <div class="form-block-group">
-                    <span class="block-title">local de corrida</span>
-                    <div class="inner-block neon-glow">
-                      <div class="input-row">
-                        <label>início:</label>
-                        <input type="text" class="input-light" value="Av. Paulista, 1000" required />
-                      </div>
-                      <div class="input-row">
-                        <label>chegada:</label>
-                        <input type="text" class="input-light" value="Rua Augusta, 500" required />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-column">
-                  <div class="form-block-group">
-                    <span class="block-title">quantidade de corredores</span>
-                    <div class="inner-block riders-grid neon-glow">
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="2" checked />
-                        <span class="radio-checkmark"></span> 2
-                      </label>
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="8" />
-                        <span class="radio-checkmark"></span> 8
-                      </label>
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="3" />
-                        <span class="radio-checkmark"></span> 3
-                      </label>
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="12" />
-                        <span class="radio-checkmark"></span> 12
-                      </label>
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="4" />
-                        <span class="radio-checkmark"></span> 4
-                      </label>
-                      <div></div>
-                      <label class="radio-container">
-                        <input type="radio" name="corredores_1" value="6" />
-                        <span class="radio-checkmark"></span> 6
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="form-block-group">
-                    <div class="inner-block reward-block neon-glow">
-                      <div class="reward-header">
-                        <label>premiação:</label>
-                        <div class="toggle-buttons">
-                          <span class="btn-toggle green active"></span>
-                          <span class="btn-toggle red"></span>
-                        </div>
-                      </div>
-                      <div class="input-row">
-                        <label>valor:</label>
-                        <input type="number" class="input-light" value="250.00" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          
+        <div id="lista-corridas-config" class="config-list">
+          <div class="loading-card">Carregando corridas...</div>
         </div>
       </div>
     </main>
 
-    <script src="../assets/javascript/script.js"></script>
-    <script>
-      function atualizarCorrida(event, id) {
-        event.preventDefault();
-        alert('Corrida ' + id + ' salva com sucesso!');
-      }
-
-      function deletarCorrida(id) {
-        if(confirm('Tem certeza de que deseja eliminar esta corrida permanentemente?')) {
-          alert('Corrida ' + id + ' eliminada.');
-        }
-      }
-    </script>
+    <script src="assets/javascript/script.js"></script>
   </body>
 </html>

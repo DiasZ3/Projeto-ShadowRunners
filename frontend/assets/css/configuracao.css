@@ -1,116 +1,306 @@
-/* Estilos específicos para a página de Configurações e Gerenciamento de Corridas */
+:root {
+  --bg-main: #0a0513;
+  --bg-sidebar: #130a21;
+  --bg-card: #180e29;
+  --bg-input: #0b0516;
+
+  --neon-purple: #bc00dd;
+  --neon-cyan: #00f0ff;
+
+  --text-primary: #e3daf0;
+  --text-muted: #84729f;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
 
 .config-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1140px;
   margin: 0 auto;
   padding-bottom: 40px;
 }
 
 .page-title {
-  color: #ff007f;
+  color: #ff85d6;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 2rem;
   letter-spacing: 2px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  text-shadow: 0 0 14px rgba(255, 133, 214, 0.4);
+}
+
+.page-description {
+  color: rgba(227, 218, 240, 0.82);
+  max-width: 760px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.loading-card,
+.empty-state,
+.error-card {
+  background: rgba(18, 8, 34, 0.95);
+  border: 1px solid rgba(188, 0, 221, 0.2);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  color: #e3daf0;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .race-settings-card {
-  background: rgba(26, 11, 41, 0.6);
-  border: 1px solid #3d1d5a;
-  border-radius: 8px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background: rgba(18, 8, 34, 0.95);
+  border: 1px solid rgba(188, 0, 221, 0.18);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.race-settings-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
 .race-settings-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #3d1d5a;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(188, 0, 221, 0.15);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .race-settings-title {
-  color: #00ffff;
-  font-size: 18px;
-  font-weight: bold;
+  color: var(--neon-cyan);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
 }
 
 .action-buttons {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .btn-action {
   background: transparent;
   border: 1px solid;
-  padding: 8px 18px;
+  padding: 12px 22px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
-  border-radius: 4px;
+  transition: all 0.25s ease;
+  border-radius: 10px;
 }
 
 .btn-save {
-  border-color: #00ff66;
-  color: #00ff66;
+  border-color: #00ff99;
+  color: #00ff99;
 }
 
 .btn-save:hover {
-  background: #00ff66;
-  color: #000;
-  box-shadow: 0 0 12px rgba(0, 255, 102, 0.6);
+  background: #00ff99;
+  color: #0b0a10;
+  box-shadow: 0 0 18px rgba(0, 255, 153, 0.35);
 }
 
 .btn-delete {
-  border-color: #ff3333;
-  color: #ff3333;
+  border-color: #ff4d78;
+  color: #ff4d78;
 }
 
 .btn-delete:hover {
-  background: #ff3333;
+  background: #ff4d78;
   color: #fff;
-  box-shadow: 0 0 12px rgba(255, 51, 51, 0.6);
+  box-shadow: 0 0 18px rgba(255, 77, 120, 0.35);
 }
 
-/* Garante que o grid interno do card se comporte perfeitamente */
 .form-grid-custom {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
 }
 
-/* Responsividade para ecrãs mais pequenos */
-@media (max-width: 768px) {
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-purple,
+.input-light {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 1px solid rgba(132, 114, 159, 0.3);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-purple {
+  padding: 18px 22px;
+  text-align: center;
+}
+
+.input-light {
+  padding: 14px 18px;
+}
+
+.input-purple:focus,
+.input-light:focus {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 15px rgba(188, 0, 221, 0.35);
+}
+
+.form-block-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.block-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--neon-purple);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.inner-block {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid rgba(188, 0, 221, 0.15);
+}
+
+.neon-glow:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.input-row label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.riders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(132, 114, 159, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.radio-container:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+.radio-container input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(132, 114, 159, 0.5);
+  border-radius: 50%;
+  position: relative;
+  outline: none;
+}
+
+.radio-container input:checked {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+  box-shadow: 0 0 8px rgba(188, 0, 221, 0.35);
+  border-color: transparent;
+}
+
+.radio-container input:checked + .radio-checkmark {
+  background: transparent;
+}
+
+.radio-checkmark {
+  width: 0;
+  height: 0;
+}
+
+.reward-block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.reward-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reward-status {
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
   .form-grid-custom {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 26px;
   }
-  
+}
+
+@media (max-width: 768px) {
   .race-settings-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .action-buttons {
     width: 100%;
   }
-  
+
   .btn-action {
     flex: 1;
     text-align: center;
+  }
+
+  .riders-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
